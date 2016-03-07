@@ -38,7 +38,7 @@ async def on_ready():
     print('------')
 
     #this can load the cogs/extensions
-    for extension in list_cogs():
+    for cog in list_cogs():
         load_cog(extension)
 
 @bot.event
