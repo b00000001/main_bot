@@ -9,8 +9,7 @@ description = "test"
 #sets up the bots characteristics. 
 #command_prefix is the character used before commands
 help_attrs = dict(hidden=True)
-bot = commands.Bot(command_prefix=[
-                   '$'], description=description, pm_help=None, help_attrs=help_attrs)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('$'), description=description, pm_help=None, help_attrs=help_attrs)
                    
 #a quick thing i made to look in a cogs folder and save all extensions in the list
 extensions = ["cogs." + i.replace("/", "\\").split("\\")[0].replace(".py", "")
@@ -54,4 +53,6 @@ async def on_command(command, ctx):
         destination = '#{0.channel.name} ({0.server.name})'.format(message)
 
     
-bot.run('krishna.r@student.amity.edu','plotable')
+
+bot.run(email, password)
+
