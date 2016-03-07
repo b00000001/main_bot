@@ -17,7 +17,6 @@ async def getPostFromJSON(postData : dict):
     isNSFW = post['over_18']
     link = post['url']
     title = post['title']
-
     return '**Title:** {0}\n**Link:** <{1}>\n**Author:** {2}\n**Score:** {3}\n**NSFW:** {4}'.format(title, link, author, score, isNSFW)
 
 async def getPosts(srPosts, num):
@@ -28,12 +27,10 @@ async def getPosts(srPosts, num):
             break
         posts.append(await getPostFromJSON(post))
         i += 1
-
     return posts
 
 async def getSubredditTop(session, subreddit, num, category):
     srData = await getSubredditJSON(session, subreddit, category)
     srPosts = srData['data']['children']
-
     return await getPosts(srPosts, num)
 
