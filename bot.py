@@ -17,13 +17,13 @@ def list_cogs():
     return ["cogs." + i.replace("/", "\\").split("\\")[0].replace(".py", "")
         for i in os.listdir("cogs") if i.endswith(".py")]
 
-def load_extension(extension):
+def load_cog(cog):
     try:
-        bot.load_extension(extension)
-        print('Loaded {}'.format(extension))
+        bot.load_extension(cog)
+        print('Loaded {}'.format(cog))
     except Exception as e:
-        print('Failed to load extension {}\n{}: {}'.format(
-            extension, type(e).__name__, e))
+        print('Failed to load cog {}\n{}: {}'.format(
+            cog, type(e).__name__, e))
 
 @bot.command(name="exit")
 async def exit():
@@ -39,7 +39,7 @@ async def on_ready():
 
     #this can load the cogs/extensions
     for extension in list_cogs():
-        load_extension(extension)
+        load_cog(extension)
 
 @bot.event
 #whenever someone puts a message
@@ -67,7 +67,7 @@ async def load(cog : str):
     if not cog in list_cogs():
         await bot.say("The cog '{}' could not be found.".format(cog))
         return
-    load_extension(cog)
+    load_cog(cog)
     await bot.say("Loaded: {}".format(cog))
 
 @bot.command(hidden=True)
@@ -90,7 +90,7 @@ async def reload(cog : str):
         await bot.say("The cog '{}' could not be found.".format(cog))
         return
     bot.unload_extension(cog)
-    load_extension(cog)
+    load_cog(cog)
     await bot.say("Reloaded: {}".format(cog))
 
 bot.run(email, password)
