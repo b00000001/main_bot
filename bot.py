@@ -40,8 +40,7 @@ async def on_ready():
 @bot.event
 #whenever someone puts a message
 async def on_message(message):
-  #bot.process_commands(message)
-  print(message.content)
+  await bot.process_commands(message)
 
 @bot.event
 #this runs when someone runs a command
