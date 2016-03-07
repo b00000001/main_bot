@@ -1,6 +1,8 @@
 import asyncio, json
 from discord.ext import commands
 
+categories = ['hot', 'new', 'controversial', 'rising', 'top']
+
 async def getSubredditJSON(session, subreddit, category):
     return await getJSON(session, 'https://www.reddit.com/r/' + subreddit + '/' + category + '/.json')
 
@@ -29,7 +31,7 @@ async def getPosts(srPosts, num):
 
     return posts
 
-async def getSubredditTop(session, subreddit, num, category='hot'):
+async def getSubredditTop(session, subreddit, num, category):
     srData = await getSubredditJSON(session, subreddit, category)
     srPosts = srData['data']['children']
 

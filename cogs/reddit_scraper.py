@@ -17,14 +17,22 @@ class RedditScraper:
             await self.bot.pm_help(ctx)
 
     @_reddit.command(pass_context=True, name="get")
-    async def get(self, ctx : commands.Context, subreddit, posts=5):
-        """Base command for returning data from a subreddit."""
+    async def get(self, ctx : commands.Context, subreddit, posts=5, category='hot'):
+        """Base command for returning data from a subreddit.
+
+        Keyword arguments:
+        posts -- Number of posts to return (default 5)
+        category -- Category to look at [hot, new, rising, controversial, top] (default hot)
+        """
         if posts > 25:
             await self.bot.say('Number of posts must be no greater than 25.')
         else:
             if subreddit.lower().strip().__len__() > 0:
-                result = await scraper.getSubredditTop(self.bot.session, subreddit, posts)
-                await self.bot.say("\n\n".join(result))
+                if category in scraper.categories:
+                    result = await scraper.getSubredditTop(self.bot.session, subreddit, posts, category)
+                    await self.bot.say("\n\n".join(result))
+                else:
+                    await self.bot.say('Category must be valid: ' + ", ".join(scraper.categories))
             else:
                 await self.bot.pm_help(ctx)
 
