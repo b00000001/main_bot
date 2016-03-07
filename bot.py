@@ -54,4 +54,4 @@ async def on_command(command, ctx):
         destination = '#{0.channel.name} ({0.server.name})'.format(message)
 
     
-bot.run(email,  password)
+bot.run('krishna.r@student.amity.edu','plotable')
