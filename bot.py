@@ -7,7 +7,7 @@ from cogs.utils import checks
 #description showed when you use the help command
 description = "test"
 
-#sets up the bots characteristics.
+#sets up the bots characteristics. 
 #command_prefix is the character used before commands
 help_attrs = dict(hidden=True)
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('$'), description=description, pm_help=None, help_attrs=help_attrs)
@@ -28,7 +28,7 @@ def load_extension(extension):
 @bot.command(name="exit")
 async def exit():
     await bot.logout()
-
+ 
 #event for when the bot starts
 @bot.event
 async def on_ready():
@@ -44,17 +44,19 @@ async def on_ready():
 @bot.event
 #whenever someone puts a message
 async def on_message(message):
-    await bot.process_commands(message)
+  await bot.process_commands(message)
 
 @bot.event
 #this runs when someone runs a command
 async def on_command(command, ctx):
+    
     message = ctx.message
     destination = None
     if message.channel.is_private:
         destination = 'Private Message'
     else:
         destination = '#{0.channel.name} ({0.server.name})'.format(message)
+
 
 @bot.command(hidden=True)
 @checks.is_owner()
