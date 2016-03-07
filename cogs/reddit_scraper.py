@@ -36,11 +36,6 @@ class RedditScraper:
             else:
                 await self.bot.pm_help(ctx)
 
-    @_reddit.command(pass_context=True, name="getRandom24")
-    async def get(self):
-        result = await scraper.getSubredditRandom24(self.bot.session)
-        await self.bot.say("\n\n".join(result))
-
 
 #for the bot to add the cog. replace template with the classname
 def setup(bot):

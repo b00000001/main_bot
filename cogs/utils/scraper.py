@@ -37,7 +37,3 @@ async def getSubredditTop(session, subreddit, num, category):
 
     return await getPosts(srPosts, num)
 
-async def getSubredditRandom24(session):
-    srData = await getJSON(session, "https://www.reddit.com/r/random/.json")
-    srPosts = srData['data']['children']
-    return await getPosts(srPosts, 2)
